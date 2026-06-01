@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SMS Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="center-page">
+
+<div class="container">
+
+<h2>📩 SMS Fraud Detection</h2>
+
+<form method="POST">
+
+    <div class="input-group">
+        <input type="text" name="sms" placeholder="Paste SMS here" required>
+    </div>
+
+    <button type="submit">Check SMS</button>
+
+</form>
+
+<br>
+
+{% if result %}
+    <h2 class="{{ 'fraud' if 'Suspicious' in result else 'normal' }}">
+        {{ result }}
+    </h2>
+
+    <p style="font-weight:bold; color:#1f3c88;">
+        {{ confidence }}
+    </p>
+
+    <p>
+        {% if 'Suspicious' in result %}
+            ⚠️ Potential fraud detected. Verify your transactions.
+        {% else %}
+            ✔ No risk detected. Continue or verify transactions.
+        {% endif %}
+    </p>
+
+    <div style="margin-top:15px;">
+        <a href="/upload">
+            <button>📄 Upload PDF</button>
+        </a>
+
+        <a href="/dashboard">
+            <button class="secondary-btn">Skip</button>
+        </a>
+    </div>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="center-page">
+<div class="container">
+
+<h2>📊 Transaction Results</h2>
+
+<table border="1" style="width:100%; text-align:center;">
+<tr>
+    <th>Amount</th>
+    <th>Status</th>
+    <th>Confidence</th>
+</tr>
+
+{% for t in transactions %}
+<tr>
+    <td>{{ t.amount }}</td>
+    <td class="{{ 'fraud' if t.result == 'Fraud' else 'normal' }}">
+        {{ t.result }}
+    </td>
+    <td>{{ t.prob }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<br>
+<a href="/dashboard"><button>Dashboard</button></a>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="center-page">
+
+<div class="container">
+
+<h2>📊 Transaction Summary</h2>
+
+<div style="margin-top:20px; font-size:15px;">
+
+    <p><b>Total Transactions:</b> {{ total }}</p>
+
+    <p class="fraud">
+        Fraud Detected: {{ fraud }}
+    </p>
+
+    <p class="normal">
+        Safe Transactions: {{ normal }}
+    </p>
+
+    <p>
+        <b>Fraud Rate:</b>
+        {{ (fraud/total*100) if total > 0 else 0 }}%
+    </p>
+
+</div>
+
+<br>
+
+<a href="/sms">
+    <button>🔁 Check Again</button>
+</a>
+
+</div>
+
+</body>
+</html>

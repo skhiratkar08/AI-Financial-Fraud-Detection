@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OTP Verification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="center-page">
+
+<div class="container">
+
+    <h2>🔑 OTP Verification</h2>
+
+    <!-- Demo OTP -->
+    <p style="font-size:13px; color:#555;">
+        Demo OTP: {{ otp }}
+    </p>
+
+    <form method="POST">
+
+        <div class="input-group">
+            <input type="text" name="otp" placeholder="Enter OTP" required>
+        </div>
+
+        <button type="submit">Verify</button>
+
+    </form>
+
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
